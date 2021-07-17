@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31313.79
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "geometry.Core.Triangulation.Domain", "geometry.Core.Triangulation.Domain\geometry.Core.Triangulation.Domain.csproj", "{F5C81B51-64FF-4957-A2F9-73DA6471FD44}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{98E0A8CA-15AE-4C33-82F6-B2346244DD8B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Component", "Component", "{E05106AD-E5A6-4ED6-BCE1-1E914278E6B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Triangulation", "Triangulation", "{0E79D057-32F3-42C0-81DF-D55968FCBD5F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "geometry.Core.SharedKernel", "geometry.Core.SharedKernel\geometry.Core.SharedKernel.csproj", "{CFDDC9EC-07A6-470A-9CC0-3DBF626886AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{1CE1FAFB-3ED5-4B51-96C6-1C4D39561DF4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "geometry.Test.Core.Triangulation.Domain", "geometry.Test.Core.Triangulation.Domain\geometry.Test.Core.Triangulation.Domain.csproj", "{644CD710-18FC-41C5-8BF8-FABA9E20F912}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{EC478161-9004-492C-9630-77CFF0EFDCFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{F2B75E40-C316-4BCE-8F3A-5C5706CB1329}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "geometry.UI.Triangulation", "geometry.UI.Triangulation\geometry.UI.Triangulation.csproj", "{2778A88A-FD2B-496D-B29A-A671F769D1A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "geometry.Core.Triangulation.Application", "geometry.Core.Triangulation.Application\geometry.Core.Triangulation.Application.csproj", "{84477388-EF3A-49BB-A691-BABDA0A44679}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "geometry.Core.Application", "geometry.Core.Application\geometry.Core.Application.csproj", "{9BCA3E52-AD26-43DB-9568-83A4521F1CAC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{F6CCB338-5C06-43A1-956B-B70DE0B4743F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "geometry.Test.Core.Triangulation.Application", "geometry.Test.Core.Triangulation.Application\geometry.Test.Core.Triangulation.Application.csproj", "{3AD554AF-00BD-42F7-924C-D5ACA6ACB37C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5C81B51-64FF-4957-A2F9-73DA6471FD44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5C81B51-64FF-4957-A2F9-73DA6471FD44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5C81B51-64FF-4957-A2F9-73DA6471FD44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5C81B51-64FF-4957-A2F9-73DA6471FD44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFDDC9EC-07A6-470A-9CC0-3DBF626886AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFDDC9EC-07A6-470A-9CC0-3DBF626886AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFDDC9EC-07A6-470A-9CC0-3DBF626886AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFDDC9EC-07A6-470A-9CC0-3DBF626886AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{644CD710-18FC-41C5-8BF8-FABA9E20F912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{644CD710-18FC-41C5-8BF8-FABA9E20F912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{644CD710-18FC-41C5-8BF8-FABA9E20F912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{644CD710-18FC-41C5-8BF8-FABA9E20F912}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2778A88A-FD2B-496D-B29A-A671F769D1A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2778A88A-FD2B-496D-B29A-A671F769D1A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2778A88A-FD2B-496D-B29A-A671F769D1A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2778A88A-FD2B-496D-B29A-A671F769D1A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84477388-EF3A-49BB-A691-BABDA0A44679}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84477388-EF3A-49BB-A691-BABDA0A44679}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84477388-EF3A-49BB-A691-BABDA0A44679}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84477388-EF3A-49BB-A691-BABDA0A44679}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BCA3E52-AD26-43DB-9568-83A4521F1CAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BCA3E52-AD26-43DB-9568-83A4521F1CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BCA3E52-AD26-43DB-9568-83A4521F1CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BCA3E52-AD26-43DB-9568-83A4521F1CAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AD554AF-00BD-42F7-924C-D5ACA6ACB37C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AD554AF-00BD-42F7-924C-D5ACA6ACB37C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AD554AF-00BD-42F7-924C-D5ACA6ACB37C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AD554AF-00BD-42F7-924C-D5ACA6ACB37C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F5C81B51-64FF-4957-A2F9-73DA6471FD44} = {0E79D057-32F3-42C0-81DF-D55968FCBD5F}
+		{E05106AD-E5A6-4ED6-BCE1-1E914278E6B3} = {98E0A8CA-15AE-4C33-82F6-B2346244DD8B}
+		{0E79D057-32F3-42C0-81DF-D55968FCBD5F} = {E05106AD-E5A6-4ED6-BCE1-1E914278E6B3}
+		{CFDDC9EC-07A6-470A-9CC0-3DBF626886AE} = {E05106AD-E5A6-4ED6-BCE1-1E914278E6B3}
+		{644CD710-18FC-41C5-8BF8-FABA9E20F912} = {1CE1FAFB-3ED5-4B51-96C6-1C4D39561DF4}
+		{F2B75E40-C316-4BCE-8F3A-5C5706CB1329} = {EC478161-9004-492C-9630-77CFF0EFDCFE}
+		{2778A88A-FD2B-496D-B29A-A671F769D1A7} = {F2B75E40-C316-4BCE-8F3A-5C5706CB1329}
+		{84477388-EF3A-49BB-A691-BABDA0A44679} = {0E79D057-32F3-42C0-81DF-D55968FCBD5F}
+		{9BCA3E52-AD26-43DB-9568-83A4521F1CAC} = {F6CCB338-5C06-43A1-956B-B70DE0B4743F}
+		{F6CCB338-5C06-43A1-956B-B70DE0B4743F} = {98E0A8CA-15AE-4C33-82F6-B2346244DD8B}
+		{3AD554AF-00BD-42F7-924C-D5ACA6ACB37C} = {1CE1FAFB-3ED5-4B51-96C6-1C4D39561DF4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7BD11395-6A58-460D-B1B2-D7F81369045F}
+	EndGlobalSection
+EndGlobal

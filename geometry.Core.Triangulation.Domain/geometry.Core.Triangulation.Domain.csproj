@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\geometry.Core.SharedKernel\geometry.Core.SharedKernel.csproj" />
+  </ItemGroup>
+
+</Project>
