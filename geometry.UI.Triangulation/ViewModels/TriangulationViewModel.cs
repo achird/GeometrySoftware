@@ -2,10 +2,8 @@
 using geometry.Core.Triangulation.Application.Interactor;
 using geometry.Core.Triangulation.Application.Use.Query;
 using geometry.UI.Triangulation.Common;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Timers;
 using System.Windows.Input;
 
 namespace geometry.UI.Triangulation.ViewModels
@@ -23,14 +21,13 @@ namespace geometry.UI.Triangulation.ViewModels
             {
                 Triangulation = await findTriangulationQueryHandler.HandleAsync(new FindTriangulationQuery()
                 {
-                    PointCount = 75,
+                    PointCount = 50,
                     LeftUpCorner = new PointDto() { X = 50, Y = 50 },
                     RightBottomCorner = new PointDto() { X = 850, Y = 650 }
                 });
 
                 OnPropertyChanged(nameof(Triangulation));
             });
-
             GenerateCommand.Execute(this);
         }
 

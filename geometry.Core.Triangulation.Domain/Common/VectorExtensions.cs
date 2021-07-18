@@ -24,9 +24,7 @@ namespace geometry.Core.Triangulation.Domain.Common
                     // "Отрезки не пересекаются (параллельны)";
                     return false;
             }
-            // Множитель вектора №1
             var numeratorA = Vector.Create(vector1.Dest, vector2.Dest) * Vector.Create(vector2.Src, vector2.Dest) / denominator;
-            // Множитель вектора №2
             var numeratorB = Vector.Create(vector1.Dest, vector1.Src) * Vector.Create(vector1.Dest, vector2.Dest) / denominator;
             return 0 <= numeratorA && numeratorA <= 1 && 0 <= numeratorB && numeratorB <= 1;
         }
@@ -39,10 +37,9 @@ namespace geometry.Core.Triangulation.Domain.Common
         {
             // Общий делитель
             var denominator = vector1.Reverse() * vector2;
-            if (denominator == 0) return Result.Failure<Point>("Нет точки пересечения");
-            // Множитель вектора №1
-            var numeratorA = Vector.Create(vector1.Dest, vector2.Dest) * Vector.Create(vector2.Src, vector2.Dest) / denominator;
-            return vector1.Dest - vector1.Offset * numeratorA;
+            if (denominator == 0) 
+                return Result.Failure<Point>("Нет точки пересечения");
+            return vector1.Dest - vector1.Offset * (Vector.Create(vector1.Dest, vector2.Dest) * Vector.Create(vector2.Src, vector2.Dest) / denominator);
         }
     }
 }
