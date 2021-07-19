@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CSharpFunctionalExtensions;
 using geometry.Core.Triangulation.Application.Interactor;
 using geometry.Core.Triangulation.Application.Use.Query;
 using geometry.UI.Triangulation.Common;
@@ -17,17 +18,39 @@ namespace geometry.UI.Triangulation.ViewModels
         {
             IFindTriangulationQueryHandler findTriangulationQueryHandler = new FindTriangulationQueryHandler(mapper);
             Caption = "Триангуляция Делоне (нажмите \"F1\", чтобы создать новую триангуляцию).";
+            Height = 700;
+            Width = 900;
+            CanExecute = true;
+
             GenerateCommand = new CreateCommand(async () =>
             {
-                Triangulation = await findTriangulationQueryHandler.HandleAsync(new FindTriangulationQuery()
+                CanExecute = false;
+                OnPropertyChanged(nameof(CanExecute));
+                MessageInfo = "Выполняется триангуляция...";
+                OnPropertyChanged(nameof(MessageInfo));
+
+                (await findTriangulationQueryHandler.HandleAsync(new FindTriangulationQuery()
                 {
-                    PointCount = 50,
+                    PointCount = PointCount,
                     LeftUpCorner = new PointDto() { X = 50, Y = 50 },
-                    RightBottomCorner = new PointDto() { X = 850, Y = 650 }
+                    RightBottomCorner = new PointDto() { X = Width - 100, Y = Height - 100 }
+                })).Tap(triangulation =>
+                {
+                    MessageInfo = "Триангуляция успешно выполнена";
+                    Triangulation = triangulation;
+                }).OnFailure(error =>
+                {
+                    MessageInfo = error;
+                    Triangulation = default;
                 });
 
+                CanExecute = true;
                 OnPropertyChanged(nameof(Triangulation));
+                OnPropertyChanged(nameof(MessageInfo));
+                OnPropertyChanged(nameof(CanExecute));
             });
+
+            PointCount = 50;
             GenerateCommand.Execute(this);
         }
 
@@ -39,7 +62,34 @@ namespace geometry.UI.Triangulation.ViewModels
         /// <summary>
         /// Заголовок окна
         /// </summary>
-        public string Caption { get; set; }
+        public string Caption { get; }
+
+        /// <summary>
+        /// Высота
+        /// </summary>
+        public int Height { get; }
+
+        /// <summary>
+        /// Ширина
+        /// </summary>
+        public int Width { get; }
+
+        /// <summary>
+        /// Команда выполняется?
+        /// </summary>
+        public bool CanExecute { get; private set; }
+
+        /// <summary>
+        /// Сообщение
+        /// </summary>
+        public string MessageInfo { get; private set; }
+
+        /// <summary>
+        /// Количество точек
+        /// </summary>
+        public int PointCount { get; set; }
+
+
         /// <summary>
         /// Данные триангуляции
         /// </summary>

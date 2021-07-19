@@ -1,12 +1,12 @@
-﻿using geometry.Core.Application.Sqrs;
-using System.Collections.Generic;
+﻿using CSharpFunctionalExtensions;
+using geometry.Core.Application.Sqrs;
 
 namespace geometry.Core.Triangulation.Application.Use.Query
 {
     /// <summary>
     /// Получить триангуляцию для случайного набора из N-точек
     /// </summary>
-    public class FindTriangulationQuery : IQuery<TriangulationDto>
+    public class FindTriangulationQuery : IQuery<Result<TriangulationDto>>
     {
         /// <summary>
         /// Количество точек в наборе
