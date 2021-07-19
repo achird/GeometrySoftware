@@ -55,7 +55,7 @@ namespace geometry.UI.Triangulation.ViewModels
         }
 
         /// <summary>
-        /// Команда формирующая триангуляцию
+        /// Команда для запуска триангуляции
         /// </summary>
         public ICommand GenerateCommand { get; private set; }
 
