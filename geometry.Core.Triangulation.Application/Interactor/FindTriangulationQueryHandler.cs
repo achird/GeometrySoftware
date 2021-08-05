@@ -36,11 +36,11 @@ namespace geometry.Core.Triangulation.Application.Interactor
                         leftUp.X + (rightBottom.X - leftUp.X) * random.NextDouble(),
                         leftUp.Y + (rightBottom.Y - leftUp.Y) * random.NextDouble())
                     );
-                var triangulation = new Delaunay();
+                var delaunay = new Delaunay(points);
                 return Result.Success(new TriangulationDto()
                 {
-                    Points = mapper.Map<IList<PointDto>>(points),
-                    Triangles = mapper.Map<IList<TriangleDto>>(triangulation.Triangulation(points))
+                    Points = mapper.Map<IList<PointDto>>(delaunay.Points),
+                    Triangles = mapper.Map<IList<TriangleDto>>(delaunay.Triangles)
                 });
             });
         }

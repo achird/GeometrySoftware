@@ -1,5 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 using geometry.Core.Triangulation.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,24 +10,41 @@ namespace geometry.Core.Triangulation.Domain
     /// <summary>
     /// Триангуляция Делоне
     /// </summary>
-    public class Delaunay
+    public class Delaunay : ValueObject<Delaunay>
     {
-        public Delaunay()
+        private readonly IReadOnlyList<Point> points;
+        private readonly IReadOnlyList<Triangle> triangles;
+
+        public Delaunay(List<Point> points)
         {
+            this.points = points ?? throw new ArgumentNullException(nameof(points));
+            this.triangles = Triangulation(points);
         }
+
+        /// <summary>
+        /// Исходный набор точек
+        /// </summary>
+        public IReadOnlyList<Point> Points => points;
+
+        /// <summary>
+        /// Список треугольников, формирующих триангуляцию
+        /// </summary>
+        public IReadOnlyList<Triangle> Triangles => triangles;
 
         /// <summary>
         /// Получить список треугольников, формирующих триангуляцию
         /// </summary>
         /// <param name="points">Набор точек для анализа</param>
         /// <returns></returns>
-        public IList<Triangle> Triangulation(IList<Point> points)
+        private List<Triangle> Triangulation(List<Point> points)
         {
             var triangles = new List<Triangle>();
-            var liveEdges = new List<Vector>();
-            var hullEdge = HullEdge(points);
-            liveEdges.Add(hullEdge);
+            var liveEdges = new List<Vector>
+            {
+                HullEdge(points)
+            };
 
+            // Добавить "живое" ребро
             void AddEdge(Vector vector)
             {
                 if (liveEdges.Contains(vector))
@@ -50,26 +68,34 @@ namespace geometry.Core.Triangulation.Domain
             return triangles;
         }
 
+        protected override bool EqualsCore(Delaunay other)
+        {
+            return
+                !Points.Except(other.Points).Any() &&
+                !other.Points.Except(Points).Any();
+        }
+
+        protected override int GetHashCodeCore()
+        {
+            return Points.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode()));
+        }
+
         /// <summary>
         /// Найти редро относительно которого все точки находятся справа
         /// </summary>
         /// <param name="points">Набор точек для анализа</param>
         /// <returns></returns>
-        private Vector HullEdge(IList<Point> points)
+        private Vector HullEdge(List<Point> points)
         {
-            var source = points.First();
-            foreach (var point in points)
-            {
-                if (point.X < source.X)
-                    source = point;
-            }
-            points.Remove(source);
-            var vector = Vector.Create(source, points.First());
+            // Поиск точки с минимальной координатой по оси X
+            var point = points.Aggregate((currentMin, point) => (point.X < currentMin.X) ? point : currentMin);
+            points.Remove(point);
+            // Поиск ребра
+            var vector = Vector.Create(point, points.First());
             foreach (var next in points)
             {
-                var relative = vector.Position(next);
-                if (relative == Relative.Left || relative == Relative.Match)
-                    vector = Vector.Create(source, next);
+                if (vector.Position(next) != Relative.Right)
+                    vector = Vector.Create(point, next);
             }
             return vector;
         }
@@ -80,7 +106,7 @@ namespace geometry.Core.Triangulation.Domain
         /// <param name="edge">Вектор</param>
         /// <param name="points">Набор точек для анализа</param>
         /// <returns></returns>
-        private Result<Point> Mate(Vector edge, IList<Point> points)
+        private Result<Point> Mate(Vector edge, IReadOnlyList<Point> points)
         {
             var optimal = double.MaxValue;
             var optimalPoint = Result.Failure<Point>("Нет сопряженной точки");
