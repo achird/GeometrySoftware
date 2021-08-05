@@ -39,12 +39,13 @@ namespace geometry.Core.Triangulation.Domain
             {
                 var edge = liveEdges.First();
                 liveEdges.Remove(edge);
-                Mate(edge, points).Tap(point =>
-                {
-                    AddEdge(Vector.Create(point, edge.Src));
-                    AddEdge(Vector.Create(edge.Dest, point));
-                    triangles.Add(Triangle.Create(edge.Src, edge.Dest, point));
-                });
+                Mate(edge, points)
+                    .Tap(point =>
+                    {
+                        AddEdge(Vector.Create(point, edge.Src));
+                        AddEdge(Vector.Create(edge.Dest, point));
+                        triangles.Add(Triangle.Create(edge.Src, edge.Dest, point));
+                    });
             }
             return triangles;
         }

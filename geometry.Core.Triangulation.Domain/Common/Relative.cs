@@ -33,8 +33,17 @@ namespace geometry.Core.Triangulation.Domain.Common
             return Value.GetHashCode();
         }
 
+        /// <summary>
+        /// Находится слева от верктора
+        /// </summary>
         public static readonly Relative Left = new(1, "Находится слева от верктора");
+        /// <summary>
+        /// Находится справа от вектора
+        /// </summary>
         public static readonly Relative Right = new(2, "Находится справа от вектора");
+        /// <summary>
+        /// Совпадает с прямой, образованной вектором
+        /// </summary>
         public static readonly Relative Match = new(3, "Совпадает с прямой, образованной вектором");
     }
 }

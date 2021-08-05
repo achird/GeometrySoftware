@@ -111,6 +111,7 @@ namespace geometry.Core.Triangulation.Domain.Common
         {
             return new Vector(src, dest);
         }
+
         /// <summary>
         /// Создать вектор (x1, y1) -> (x2, y2)
         /// </summary>
@@ -119,6 +120,7 @@ namespace geometry.Core.Triangulation.Domain.Common
         {
             return new Vector(Point.Create(x1, y1), Point.Create(x2, y2));
         }
+
         /// <summary>
         /// Создать ненулевой вектор (x1, y1) -> (x2, y2)
         /// </summary>
