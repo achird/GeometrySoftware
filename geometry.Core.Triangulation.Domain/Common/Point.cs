@@ -22,6 +22,16 @@ namespace geometry.Core.Triangulation.Domain.Common
         /// </summary>
         public double Y { get; private set; }
 
+        protected override bool EqualsCore(Point other)
+        {
+            return (X, Y) == (other.X, other.Y);
+        }
+
+        protected override int GetHashCodeCore()
+        {
+            return (X, Y).GetHashCode();
+        }
+
         /// <summary>
         /// Сложить две точки
         /// </summary>
@@ -56,16 +66,6 @@ namespace geometry.Core.Triangulation.Domain.Common
         public static Point operator /(Point p, double divider)
         {
             return Create(p.X / divider, p.Y / divider);
-        }
-
-        protected override bool EqualsCore(Point other)
-        {
-            return (X, Y) == (other.X, other.Y);
-        }
-
-        protected override int GetHashCodeCore()
-        {
-            return (X, Y).GetHashCode();
         }
 
         /// <summary>

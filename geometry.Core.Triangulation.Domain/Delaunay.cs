@@ -12,24 +12,21 @@ namespace geometry.Core.Triangulation.Domain
     /// </summary>
     public class Delaunay : ValueObject<Delaunay>
     {
-        private readonly IReadOnlyList<Point> points;
-        private readonly IReadOnlyList<Triangle> triangles;
-
         public Delaunay(List<Point> points)
         {
-            this.points = points ?? throw new ArgumentNullException(nameof(points));
-            this.triangles = Triangulation(points);
+            Points = points ?? throw new ArgumentNullException(nameof(points));
+            Triangles = Triangulation(points);
         }
 
         /// <summary>
         /// Исходный набор точек
         /// </summary>
-        public IReadOnlyList<Point> Points => points;
+        public IReadOnlyList<Point> Points { get; }
 
         /// <summary>
         /// Список треугольников, формирующих триангуляцию
         /// </summary>
-        public IReadOnlyList<Triangle> Triangles => triangles;
+        public IReadOnlyList<Triangle> Triangles { get; }
 
         /// <summary>
         /// Получить список треугольников, формирующих триангуляцию
@@ -66,18 +63,6 @@ namespace geometry.Core.Triangulation.Domain
                     });
             }
             return triangles;
-        }
-
-        protected override bool EqualsCore(Delaunay other)
-        {
-            return
-                !Points.Except(other.Points).Any() &&
-                !other.Points.Except(Points).Any();
-        }
-
-        protected override int GetHashCodeCore()
-        {
-            return Points.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode()));
         }
 
         /// <summary>
@@ -129,5 +114,16 @@ namespace geometry.Core.Triangulation.Domain
             return optimalPoint;
         }
 
+        protected override bool EqualsCore(Delaunay other)
+        {
+            return
+                !Points.Except(other.Points).Any() &&
+                !other.Points.Except(Points).Any();
+        }
+
+        protected override int GetHashCodeCore()
+        {
+            return Points.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode()));
+        }
     }
 }
