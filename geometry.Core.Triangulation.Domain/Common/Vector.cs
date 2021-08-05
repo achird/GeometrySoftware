@@ -19,10 +19,12 @@ namespace geometry.Core.Triangulation.Domain.Common
         /// Исходная точка
         /// </summary>
         public Point Src { get; }
+
         /// <summary>
         /// Конечная точка
         /// </summary>
         public Point Dest { get; }
+
         /// <summary>
         /// Смещение относительно исходной точки
         /// </summary>
@@ -73,6 +75,16 @@ namespace geometry.Core.Triangulation.Domain.Common
             return Create(Dest, Src);
         }
 
+        protected override bool EqualsCore(Vector other)
+        {
+            return (Src, Dest) == (other.Src, other.Dest);
+        }
+
+        protected override int GetHashCodeCore()
+        {
+            return (Src, Dest).GetHashCode();
+        }
+
         /// <summary>
         /// Скалярное произведение векторов v1 и v2
         /// </summary>
@@ -89,16 +101,6 @@ namespace geometry.Core.Triangulation.Domain.Common
         public static double operator *(Vector v1, Vector v2)
         {
             return v1.Offset.X * v2.Offset.Y - v2.Offset.X * v1.Offset.Y;
-        }
-
-        protected override bool EqualsCore(Vector other)
-        {
-            return (Src, Dest) == (other.Src, other.Dest);
-        }
-
-        protected override int GetHashCodeCore()
-        {
-            return (Src, Dest).GetHashCode();
         }
 
         /// <summary>

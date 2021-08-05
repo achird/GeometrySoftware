@@ -18,10 +18,12 @@ namespace geometry.Core.Triangulation.Domain.Common
         /// Точка A
         /// </summary>
         public Point A { get; private set; }
+
         /// <summary>
         /// Точка B
         /// </summary>
         public Point B { get; private set; }
+        
         /// <summary>
         /// Точка C
         /// </summary>

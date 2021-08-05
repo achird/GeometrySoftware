@@ -54,7 +54,7 @@ namespace geometry.Core.Triangulation.Domain
         /// </summary>
         /// <param name="points">Набор точек для анализа</param>
         /// <returns></returns>
-        public Vector HullEdge(IList<Point> points)
+        private Vector HullEdge(IList<Point> points)
         {
             var source = points.First();
             foreach (var point in points)
@@ -79,22 +79,25 @@ namespace geometry.Core.Triangulation.Domain
         /// <param name="edge">Вектор</param>
         /// <param name="points">Набор точек для анализа</param>
         /// <returns></returns>
-        public Result<Point> Mate(Vector edge, IList<Point> points)
+        private Result<Point> Mate(Vector edge, IList<Point> points)
         {
             var optimal = double.MaxValue;
             var optimalPoint = Result.Failure<Point>("Нет сопряженной точки");
-            var perpEdge = edge.Normal();
+            var normalEdge = edge.Normal();
             foreach (var next in points.Where(p => edge.Position(p) == Relative.Right))
             {
-                Vector.Create(edge.Dest, next).Normal().Intersect(perpEdge).Tap(circleCenter =>
-                {
-                    var newOptimal = (circleCenter.X - perpEdge.Src.X) * perpEdge.Offset.X + (circleCenter.Y - perpEdge.Src.Y) * perpEdge.Offset.Y;
-                    if (optimal > newOptimal)
+                Vector.Create(edge.Dest, next)
+                    .Normal()
+                    .Intersect(normalEdge)
+                    .Tap(circleCenter =>
                     {
-                        optimal = newOptimal;
-                        optimalPoint = Result.Success(next);
-                    }
-                });
+                        var newOptimal = (circleCenter.X - normalEdge.Src.X) * normalEdge.Offset.X + (circleCenter.Y - normalEdge.Src.Y) * normalEdge.Offset.Y;
+                        if (optimal > newOptimal)
+                        {
+                            optimal = newOptimal;
+                            optimalPoint = Result.Success(next);
+                        }
+                    });
             }
             return optimalPoint;
         }

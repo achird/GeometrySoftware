@@ -9,10 +9,12 @@
         /// Координата точка A
         /// </summary>
         public PointDto A { get; set; }
+        
         /// <summary>
         /// Координата точка B
         /// </summary>
         public PointDto B { get; set; }
+
         /// <summary>
         /// Координата точка C
         /// </summary>

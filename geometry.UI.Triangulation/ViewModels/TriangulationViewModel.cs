@@ -50,7 +50,7 @@ namespace geometry.UI.Triangulation.ViewModels
                 OnPropertyChanged(nameof(CanExecute));
             });
 
-            PointCount = 50;
+            PointCount = 100;
             GenerateCommand.Execute(this);
         }
 

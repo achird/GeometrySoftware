@@ -9,6 +9,7 @@
         /// Координата X
         /// </summary>
         public double X { get; set; }
+
         /// <summary>
         /// Координата Y
         /// </summary>
