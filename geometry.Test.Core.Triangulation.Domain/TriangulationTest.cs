@@ -10,7 +10,7 @@ namespace geometry.Test.Core.Triangulation.Domain
         [Fact]
         public void DelaunayTriangulationTest()
         {
-            var points = new List<Point>()
+            var delaunay = new Delaunay(new List<Point>()
             {
                 Point.Create(6, 0),
                 Point.Create(3, 1),
@@ -19,11 +19,8 @@ namespace geometry.Test.Core.Triangulation.Domain
                 Point.Create(4, 6),
                 Point.Create(2, -2),
                 Point.Create(5, 2)
-            };
-            var triangulation = new Delaunay();
-            var triangles = triangulation.Triangulation(points);
-
-            Assert.Equal(7, triangles.Count);
+            });
+            Assert.Equal(7, delaunay.Triangles.Count);
         }
 
 
