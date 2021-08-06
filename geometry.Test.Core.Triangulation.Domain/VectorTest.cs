@@ -10,8 +10,8 @@ namespace geometry.Test.Core.Triangulation.Domain
         {
             var vector1 = Vector.Create(0, 3, 2, 1);
             var vector2 = Vector.Create(Point.Create(0, 3), Point.Create(2, 1));
-            var resultVector3 = Vector.CreateNonZero(0, 0, 0, 0);
-            var resultVector4 = Vector.CreateNonZero(0, 0, 1, 1);
+            var resultVector3 = Vector.CreateNonZero(Point.Create(0, 0), Point.Create(0, 0));
+            var resultVector4 = Vector.CreateNonZero(Point.Create(0, 0), Point.Create(1, 1));
 
             Assert.Equal(vector1, vector2);
             Assert.Equal(vector1, vector2);

@@ -113,28 +113,23 @@ namespace geometry.Core.Triangulation.Domain.Common
         }
 
         /// <summary>
+        /// Создать ненулевой вектор (x1, y1) -> (x2, y2)
+        /// </summary>
+        /// <returns></returns>
+        public static Result<Vector> CreateNonZero(Point src, Point dest)
+        {
+            if (src == dest)
+                return Result.Failure<Vector>("Точки не должны совпадать");
+
+            return new Vector(src, dest);
+        }
+
+        /// <summary>
         /// Создать вектор (x1, y1) -> (x2, y2)
         /// </summary>
         /// <returns></returns>
         public static Vector Create(double x1, double y1, double x2, double y2)
         {
-            return new Vector(Point.Create(x1, y1), Point.Create(x2, y2));
-        }
-
-        /// <summary>
-        /// Создать ненулевой вектор (x1, y1) -> (x2, y2)
-        /// </summary>
-        /// <returns></returns>
-        public static Result<Vector> CreateNonZero(double x1, double y1, double x2, double y2)
-        {
-            var src = Point.Create(x1, y1);
-            var dest = Point.Create(x2, y2);
-
-            if (src == dest)
-            {
-                return Result.Failure<Vector>("Точки не должны совпадать");
-            }
-
             return new Vector(Point.Create(x1, y1), Point.Create(x2, y2));
         }
     }

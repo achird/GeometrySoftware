@@ -12,9 +12,9 @@ namespace geometry.Core.Triangulation.Domain
     /// </summary>
     public class Delaunay : ValueObject<Delaunay>
     {
-        public Delaunay(List<Point> points)
+        private Delaunay(List<Point> points)
         {
-            Points = points ?? throw new ArgumentNullException(nameof(points));
+            Points = points;
             Triangles = Triangulation(points);
         }
 
@@ -74,13 +74,12 @@ namespace geometry.Core.Triangulation.Domain
         {
             // Поиск точки с минимальной координатой по оси X
             var point = points.Aggregate((currentMin, point) => (point.X < currentMin.X) ? point : currentMin);
-            points.Remove(point);
             // Поиск ребра
             var vector = Vector.Create(point, points.First());
             foreach (var next in points)
             {
                 if (vector.Position(next) != Relative.Right)
-                    vector = Vector.Create(point, next);
+                    Vector.CreateNonZero(point, next).Tap(v => vector = v);
             }
             return vector;
         }
@@ -124,6 +123,43 @@ namespace geometry.Core.Triangulation.Domain
         protected override int GetHashCodeCore()
         {
             return Points.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode()));
+        }
+
+        /// <summary>
+        /// Создать триангуляцию для списка точек
+        /// </summary>
+        /// <param name="points">Список точек для триангуляции</param>
+        /// <returns></returns>
+        public static Result<Delaunay> Create(List<Point> points)
+        {
+            if (points is not null && points.Count < 3 || points.Count > 500)
+                return Result.Failure<Delaunay>("Количество точек должно быть от 3 до 500");
+
+            return new Delaunay(points);
+        }
+
+        /// <summary>
+        /// Создать триангуляцию из произвольного набора точек в заданной области
+        /// </summary>
+        /// <param name="leftUp">Координаты левого верхнего угола</param>
+        /// <param name="rightBottom">Координаты правого нижнего угола</param>
+        /// <param name="count">Количество точек</param>
+        /// <returns></returns>
+        public static Result<Delaunay> CreateRandomTriangulation(Point leftUp, Point rightBottom, int count)
+        {
+            if (count < 3 || count > 500)
+                return Result.Failure<Delaunay>("Количество точек должно быть от 3 до 500");
+
+            var points = new List<Point>();
+            var random = new Random();
+            points.AddRange(
+                from position in Enumerable.Range(1, count)
+                select Point.Create(
+                    leftUp.X + (rightBottom.X - leftUp.X) * random.NextDouble(),
+                    leftUp.Y + (rightBottom.Y - leftUp.Y) * random.NextDouble())
+                );
+
+            return new Delaunay(points);
         }
     }
 }
