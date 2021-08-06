@@ -10,7 +10,7 @@ using System.Windows.Input;
 namespace geometry.UI.Triangulation.ViewModels
 {
     /// <summary>
-    /// ViewModel для визуализации полученной триангуляции
+    /// ViewModel для визуализации триангуляции
     /// </summary>
     public class TriangulationViewModel : INotifyPropertyChanged
     {
@@ -18,6 +18,8 @@ namespace geometry.UI.Triangulation.ViewModels
         {
             IFindTriangulationQueryHandler findTriangulationQueryHandler = new FindTriangulationQueryHandler(mapper);
             Caption = "Триангуляция Делоне (нажмите \"F1\", чтобы создать новую триангуляцию).";
+            CaptionPointCount = "Количество точек (3-500)";
+            CaptionGenerateButton = "Выполнить";
             Height = 700;
             Width = 900;
             CanExecute = true;
@@ -63,6 +65,16 @@ namespace geometry.UI.Triangulation.ViewModels
         /// Заголовок окна
         /// </summary>
         public string Caption { get; }
+
+        /// <summary>
+        /// Заголовок поля ввода
+        /// </summary>
+        public string CaptionPointCount { get; }
+
+        /// <summary>
+        /// Заголовок кнопки генерации
+        /// </summary>
+        public string CaptionGenerateButton { get; }
 
         /// <summary>
         /// Высота

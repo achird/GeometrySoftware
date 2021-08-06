@@ -4,20 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:extension="clr-namespace:geometry.UI.Triangulation.Common"
+        xmlns:viewmodels="clr-namespace:geometry.UI.Triangulation.ViewModels" 
+        d:DataContext="{x:Static viewmodels:DesignTimeViewModelFactory.MainWindowViewModel}"
         mc:Ignorable="d" Title="{Binding Caption}" Height="730" Width="910" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     
     <Window.Resources>
         <extension:PointDtoConveter x:Key="PointDtoConveter" />
     </Window.Resources>
-    
+
     <Window.InputBindings>
         <KeyBinding Key="F1" Command="{Binding GenerateCommand}" />
     </Window.InputBindings>
     <DockPanel>
         <StackPanel Margin="5,5,5,0" Orientation="Horizontal" DockPanel.Dock="Top">
-            <TextBlock Text="Количество точек (3-500)" />
+            <TextBlock Text="{Binding CaptionPointCount}" />
             <TextBox Width="100" Text="{Binding PointCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,0" />
-            <Button Margin="5,0,0,0" Width="100" Height="20" Content="Запустить" HorizontalAlignment="Left" IsEnabled="{Binding CanExecute}" Command="{Binding GenerateCommand}" />
+            <Button Margin="5,0,0,0" Width="100" Height="20" Content="{Binding CaptionGenerateButton}" HorizontalAlignment="Left" IsEnabled="{Binding CanExecute}" Command="{Binding GenerateCommand}" />
         </StackPanel>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem>
