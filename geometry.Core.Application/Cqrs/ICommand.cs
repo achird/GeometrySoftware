@@ -1,4 +1,4 @@
-﻿namespace geometry.Core.Application.Sqrs
+﻿namespace geometry.Core.Application.Cqrs
 {
     /// <summary>
     /// Команда к контексту домена, возвращающая результат

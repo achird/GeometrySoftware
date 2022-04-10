@@ -1,5 +1,5 @@
 ﻿using CSharpFunctionalExtensions;
-using geometry.Core.Application.Sqrs;
+using geometry.Core.Application.Cqrs;
 
 namespace geometry.Core.Triangulation.Application.Use.Query
 {

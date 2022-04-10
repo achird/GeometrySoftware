@@ -1,4 +1,4 @@
-﻿namespace geometry.Core.Application.Sqrs
+﻿namespace geometry.Core.Application.Cqrs
 {
     /// <summary>
     /// Запрос к контексту домена

@@ -5,6 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:extension="clr-namespace:geometry.UI.Triangulation.Common"
         xmlns:viewmodels="clr-namespace:geometry.UI.Triangulation.ViewModels" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}"
         d:DataContext="{x:Static viewmodels:DesignTimeViewModelFactory.MainWindowViewModel}"
         mc:Ignorable="d" Title="{Binding Caption}" Height="730" Width="910" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     
@@ -17,9 +23,9 @@
     </Window.InputBindings>
     <DockPanel>
         <StackPanel Margin="5,5,5,0" Orientation="Horizontal" DockPanel.Dock="Top">
-            <TextBlock Text="{Binding CaptionPointCount}" />
-            <TextBox Width="100" Text="{Binding PointCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,0" />
-            <Button Margin="5,0,0,0" Width="100" Height="20" Content="{Binding CaptionGenerateButton}" HorizontalAlignment="Left" IsEnabled="{Binding CanExecute}" Command="{Binding GenerateCommand}" />
+            <TextBlock VerticalAlignment="Center" Text="{Binding CaptionPointCount}" />
+            <TextBox Width="100" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding PointCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0" />
+            <Button Margin="10,0,0,0" Width="110" Content="{Binding CaptionGenerateButton}" HorizontalAlignment="Left" IsEnabled="{Binding CanExecute}" Command="{Binding GenerateCommand}" />
         </StackPanel>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem>

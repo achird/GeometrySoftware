@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace geometry.Core.Application.Sqrs
+namespace geometry.Core.Application.Cqrs
 {
     /// <summary>
     /// Обработчик команд к контексту домена

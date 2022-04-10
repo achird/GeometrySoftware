@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace geometry.Core.Application.Sqrs
+namespace geometry.Core.Application.Cqrs
 {
     /// <summary>
     /// Обработчик запросов к контексту домена
